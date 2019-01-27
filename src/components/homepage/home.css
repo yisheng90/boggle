@@ -1,0 +1,40 @@
+.homePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100Vh;
+}
+
+.logo {
+    color: #00A7E1;
+    font-size: calc(48px + 6vmin);
+    font-weight: bolder;
+    text-shadow: 5px 5px #EDDEA4;
+}
+
+.text-blue {
+    color: #00A7E1;
+}
+
+.text-yellow {
+    color: #FF9B42;
+}
+
+.buttonWrapper {
+    margin: 20px;
+    padding:10px;
+}
+
+.buttonWrapper .button {
+    padding: 5px 10px;
+    font-size: 18px;
+    color: red;
+    text-shadow: 3px 0px #EDDEA4;
+    font-weight:bold;
+    border:none;
+}
+
+.buttonWrapper .button:hover {
+    cursor: pointer;
+}

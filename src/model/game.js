@@ -1,5 +1,5 @@
 import Dice from './dice';
-import TextValidator from '../validator/validator';
+import TextValidator from '../lib/validator/validator';
 
 const DICE_CONFIG = [
     ['*', 'e', 'i', 'l', 'r', 'x'],
@@ -54,7 +54,6 @@ class Boggle {
             return 1;
         }
     }
-
 
     addWord(word) {
         if (this.validator.isValidStringInput(word, this.tiles) && !this.validator.isWordSubmitted(word, this.answers) && this.validator.isValidWord(word)) {

@@ -1,57 +1,25 @@
 import React, {Component} from 'react';
 import './App.css';
-import Boggle from './model/game';
-import GameBoard from './components/game_borad';
-import Timer from './components/timer';
-import Input from './components/input';
-import List from './components/list';
+import Game from './components/game/game';
+import HomePage from './components/homepage/home'
 
 class App extends Component {
     constructor(props) {
-        super(props)
-        this.game = new Boggle();
-        this.game.init();
+        super(props);
+        this.pages = [<HomePage />, <Game/>];
         this.state = {
-            alphabets: this.game.tiles.map((tile) => tile.word.toUpperCase()),
-            hasStarted: true,
-            hasTimeOut: false,
-            totalScore: this.game.totalScore,
-            answers: this.game.answers,
-        }
-        this.addWord = this.addWord.bind(this);
-    }
-
-
-    addWord(event) {
-        if (this.state.hasTimeOut === false && event.keyCode === 13 && event.target.value.length > 0) {
-            this.game.addWord(event.target.value);
-            this.setState({
-                answers: this.game.answers,
-                totalScore: this.game.totalScore,
-            })
+            currentIdx: 0,
         }
     }
 
-    restart() {
-
+    _renderPage() {
+        return this.pages[this.state.currentIdx];
     }
 
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    Boggle
-                </header>
-
-                <Timer isStarted={this.state.hasStarted}/>
-                <div className="App-body">
-                    <GameBoard tiles={this.state.alphabets}/>
-                    <div>
-
-                        <Input onChangeHandler={this.addWord}/>
-                        <List answers={this.state.answers}/>
-                    </div>
-                </div>
+                {this._renderPage()}
             </div>
         );
     }
