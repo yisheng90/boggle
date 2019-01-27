@@ -1,0 +1,11 @@
+.tile {
+    width: 20%;
+
+    display: inline-block;
+    font-size: 25px;
+    color: #00A7E1;
+    text-align: center;
+    background: white;
+    margin: 2%;
+}
+
