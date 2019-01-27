@@ -1,48 +1,19 @@
 import React, {Component} from 'react';
+import './input.css';
 
-class Timer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isStarted: false,
-            time: 180,
-        }
-    }
-
-    componentDidMount() {
-        let self = this;
-        let timer = setInterval(() => {
-            let time = self.state.time - 1;
-            if (time < 0) {
-                clearInterval(timer)
-            }
-
-            self.setState({
-                time: time
-            })
-        }, 1000)
-    }
-
-    _getSeconds() {
-        return Math.floor(this.state.time % 60);
-    }
-
-    _getMunutes() {
-        return Math.floor(this.state.time / 60);
-    }
-
+class Input extends Component {
     render() {
         return (
-            <div className="timer">
-                <div className="minutes">
-                    {this._getMunutes()}
-                </div>
-                <div className="second">
-                    {this._getSeconds()}
-                </div>
+            <div className="inputWrapper">
+                <input type="text"
+                       name="word"
+                       className="input"
+                       placeholder="Your Word"
+                       onKeyDown={(e) => this.props.onChangeHandler(e)}
+                />
             </div>
-        );
+        )
     }
 }
 
-export default Timer;
+export default Input;

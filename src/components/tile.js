@@ -1,24 +1,14 @@
 import React, {Component} from 'react';
+import './tile.css';
 
-class GameBoard extends Component {
-    constructor(props) {
-        super(props);
-        this.tiles = ['T', 'A', 'P', '*', 'E', 'A', 'K', 'S', 'O', 'B', 'R', 'S', 'S', '*', 'X', 'D'];
-    }
-
-    _renderTiles() {
-        return this.tiles.map((tile) => {
-            return tile;
-        })
-    }
-
+class Tile extends Component {
     render() {
         return (
-            <div className="gameBoard">
-                {this._renderTiles()}
+            <div className="tile">
+                <span>{this.props.tile}</span>
             </div>
         );
     }
 }
 
-export default GameBoard;
+export default Tile;

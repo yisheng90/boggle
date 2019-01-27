@@ -1,26 +1,56 @@
 import React, {Component} from 'react';
-import './game_board.css';
-import Tile from './tile';
+import './timer.css';
 
-class GameBoard extends Component {
+class Timer extends Component {
     constructor(props) {
         super(props);
-        this.tiles = ['T', 'A', 'P', '*', 'E', 'A', 'K', 'S', 'O', 'B', 'R', 'S', 'S', '*', 'X', 'D'];
+        this.state = {
+            isStarted: false,
+            time: 180,
+        }
     }
 
-    _renderTiles() {
-        return this.tiles.map((tile) => {
-            return <Tile tile={tile}/>;
-        });
+    componentDidMount() {
+        let self = this;
+        if (self.props.isStarted === true) {
+            let timer = setInterval(() => {
+                let time = self.state.time - 1;
+                if (time === 0) {
+                    clearInterval(timer)
+                }
+
+                self.setState({
+                    time: time
+                })
+            }, 1000)
+        }
+    }
+
+    _getSeconds() {
+        let second =  Math.floor(this.state.time % 60).toString();
+        second = (second.length === 1) ? '0' + second : second;
+        return second
+    }
+
+    _getMinutes() {
+        let minutes = Math.floor(this.state.time / 60).toString();
+        minutes = (minutes.length === 1) ? '0' + minutes : minutes;
+        return minutes
     }
 
     render() {
         return (
-            <div className="gameBoard">
-                {this._renderTiles()}
+            <div className="timer">
+                <div className="minutes">
+                    {this._getMinutes()}
+                </div>
+                <div className="seperator">:</div>
+                <div className="second">
+                    {this._getSeconds()}
+                </div>
             </div>
         );
     }
 }
 
-export default GameBoard;
+export default Timer;

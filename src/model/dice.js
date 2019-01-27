@@ -3,7 +3,6 @@ class Dice {
         this.word = letters[0];
         this.letters = letters;
         this.adjecents = [];
-        console.log("this.letters", this.letters)
     }
 
     populateAdjacentTiles(currentIdx, array = []) {
@@ -27,9 +26,6 @@ class Dice {
         this.word = this.letters[idx];
     }
 
-    findAdjacent(word) {
-        return this.adjecents.find((tile) => tile.word === word || tile.word === "*");
-    }
 }
 
 export default Dice;

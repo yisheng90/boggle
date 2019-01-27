@@ -1,7 +1,6 @@
-.tile {
-    width: 20%;
-
-    display: inline-block;
+.timer {
+    display: flex;
+    justify-content: center;
     font-size: 25px;
     color: #00A7E1;
     text-align: center;
