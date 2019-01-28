@@ -1,8 +1,5 @@
 import TrieDictionary from "./dictionary";
 
-// const texts = require('/public/dictionary.txt');
-
-
 class TextValidator {
     constructor() {
         this.dictionary = new TrieDictionary();

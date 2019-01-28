@@ -1,5 +1,5 @@
-import Dice from './dice';
-import TextValidator from '../lib/validator/validator';
+import Dice from '../dice/dice';
+import TextValidator from '../../lib/validator/validator';
 
 const DICE_CONFIG = [
   ['d', 'e', 'i', 'l', 'r', 'x'],

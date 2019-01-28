@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Boggle from '../../model/game';
+import Boggle from '../../model/game/game';
 import Badge from '../../elements/badge/badge';
 import GameBoard from '../board/board';
 import Summary from '../summary/summary';
