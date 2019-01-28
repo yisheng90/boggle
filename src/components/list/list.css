@@ -1,0 +1,9 @@
+.listWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 80%;
+    padding: 20px;
+}
+
