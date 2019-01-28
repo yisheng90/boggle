@@ -1,59 +1,127 @@
 import React, {Component} from 'react';
 import Boggle from '../../model/game';
-import GameBoard from '../game_borad';
-import Timer from '../timer';
-import Input from '../input';
-import List from '../list';
+import Badge from '../../elements/badge/badge';
+import GameBoard from '../board/board';
+import Summary from '../summary/summary';
+import Timer from '../../elements/timer/timer';
+import './game.css';
 
 class Game extends Component {
-    constructor(props) {
-        super(props)
-        this.game = new Boggle();
-        this.game.init();
-        this.state = {
-            alphabets: this.game.tiles.map((tile) => tile.word.toUpperCase()),
-            hasStarted: true,
-            hasTimeOut: false,
-            totalScore: this.game.totalScore,
-            answers: this.game.answers,
-        }
-        this.addWord = this.addWord.bind(this);
+  constructor(props) {
+    super(props);
+    this.game = new Boggle();
+    this.state = {
+      alphabets: this.game.dices.map((dice) => dice.word.toUpperCase()),
+      hasStarted: false,
+      hasTimeOut: false,
+      totalScore: this.game.totalScore,
+      answers: this.game.answers,
+    };
+    this.addWord = this._addWord.bind(this);
+    this.restart = this._restart.bind(this);
+    this.recordTimeOut = this._recordTimeOut.bind(this);
+  }
+  
+  componentDidMount() {
+    this.game.init();
+    this._setGame();
+  }
+  
+  componentWillUpdate(prevProps, nexProps, snapshot) {
+    if (nexProps.alphabets !== this.state.alphabets) {
+      this.setState({
+        hasStarted: true,
+        hasTimeOut: false,
+      });
     }
-
-
-    addWord(event) {
-        if (this.state.hasTimeOut === false && event.keyCode === 13 && event.target.value.length > 0) {
-            this.game.addWord(event.target.value);
-            this.setState({
-                answers: this.game.answers,
-                totalScore: this.game.totalScore,
-            })
-        }
+  }
+  
+  _addWord(event) {
+    if (this.state.hasTimeOut === false && event.keyCode === 13 && event.target.value.length > 0) {
+      this.game.addWord(event.target.value);
+      this.setState({
+        answers: this.game.answers,
+        totalScore: this.game.totalScore,
+      });
+      event.target.value = '';
     }
-
-    restart() {
-
+  }
+  
+  _recordTimeOut() {
+    this.setState({
+      hasTimeOut: true,
+    });
+  }
+  
+  _restart(event) {
+    event.preventDefault();
+    this.game.restart();
+    this._setGame();
+  }
+  
+  _setGame() {
+    this.setState({
+      alphabets: this.game.dices.map((dice) => dice.word.toUpperCase()),
+      hasStarted: false,
+      hasTimeOut: false,
+      totalScore: this.game.totalScore,
+      answers: this.game.answers,
+    });
+  }
+  
+  _renderBadge() {
+    let lastAnswer = this.state.answers[this.state.answers.length - 1];
+    if (lastAnswer) {
+      return (
+        <Badge word={lastAnswer.word} score={lastAnswer.score}/>
+      );
     }
-
-    render() {
-        return (
-            <div>
-                <header className="App-header">
-                    Boggle
-                </header>
-
-                <Timer isStarted={this.state.hasStarted}/>
-                <div className="App-body">
-                    <GameBoard tiles={this.state.alphabets}/>
-                    <div>
-
-                        <Input onChangeHandler={this.addWord}/>
-                        <List answers={this.state.answers}/>
-                    </div>
-                </div>
+  }
+  
+  _renderPage() {
+    if (this.state.hasTimeOut) {
+      return (
+        <Summary totalScore="20"
+                 answers={this.state.answers}
+                 onClickHandler={this.restart}
+        />
+      );
+    } else {
+      return (
+        <div>
+          <div className="headerWrapper">
+            <Timer isStarted={this.state.hasStarted}
+                   timeLimit={this.game.timeLimit}
+                   recordTimeOut={this.recordTimeOut}
+            />
+            
+            <div className="textWhite">
+              {this.state.totalScore}
             </div>
-        );
+            
+            <div>
+              <a href="#" className="textLink" onClick={this.restart}>Restart</a>
+            </div>
+          </div>
+          
+          <div className="bodyWrapper">
+            {this._renderBadge()}
+            <GameBoard dices={this.state.alphabets}
+                       onChangeHandler={this.addWord}
+            />
+          </div>
+        </div>
+      );
     }
+  }
+  
+  render() {
+    return (
+      <div>
+        {this._renderPage()}
+      </div>
+    );
+  }
 }
 
 export default Game;
