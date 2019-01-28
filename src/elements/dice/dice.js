@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import './tile.css';
+import './dice.css';
 
-class Tile extends Component {
+class Dice extends Component {
     render() {
         return (
             <div className="tile">
-                <span>{this.props.tile}</span>
+                <div>{this.props.dice}</div>
             </div>
         );
     }
 }
 
-export default Tile;
+export default Dice;
