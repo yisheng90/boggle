@@ -7,7 +7,7 @@ class TextValidator {
 
     init() {
         let self = this
-        fetch('/dictionary.txt')
+        fetch('./dictionary.txt')
             .then(res => res.text())
             .then(text => {
                 text.split("\n").forEach((word) => self.dictionary.insert(word));
