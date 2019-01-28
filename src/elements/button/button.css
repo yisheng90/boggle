@@ -1,0 +1,18 @@
+.buttonWrapper {
+    margin: 20px;
+    padding: 10px;
+}
+
+.buttonWrapper .button {
+    padding: 5px 10px;
+    font-size: 25px;
+    color: #fff;
+    font-weight: bolder;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background: #00e2c8;
+}
+
+.buttonWrapper .button:hover {
+    cursor: pointer;
+}
