@@ -1,0 +1,17 @@
+.inputWrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px;
+}
+
+.inputWrapper .input {
+    font-size: 25px;
+    color: #e71d36;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #c5d86d;
+    border-radius: 50px;
+}
+
