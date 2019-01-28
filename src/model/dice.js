@@ -4,8 +4,8 @@ class Dice {
         this.letters = letters;
         this.adjecents = [];
     }
-
-    populateAdjacentTiles(currentIdx, array = []) {
+    
+    populateAdjacentDices(currentIdx, array = []) {
         let target_index = [-5, -4, -3, -1, 1, 3, 4, 5];
         if (currentIdx % 4 === 0) {
             target_index = [-4, -3, 1, 4, 5];
@@ -22,7 +22,7 @@ class Dice {
     }
 
     rollDice() {
-        let idx = Math.floor(Math.random() * 6);
+        let idx = Math.floor(Math.random() * this.letters.length);
         this.word = this.letters[idx];
     }
 
