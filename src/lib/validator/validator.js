@@ -17,20 +17,20 @@ class TextValidator {
             });
     }
 
-    isValidStringInput(word, tiles = [], selectedTiles = []) {
+    isValidStringInput(word, dices = [], selectedDices = []) {
         if (!word) {
             return true;
         }
-        let startingTiles = tiles.filter((tile) => tile.word === word.charAt(0) || tile.word === "*");
+        let startingDices = dices.filter((dice) => dice.word === word.charAt(0) || dice.word === "*");
         let isValid = false;
 
-        while (!isValid && startingTiles.length > 0) {
-            let currentTile = startingTiles.shift();
-            if (!selectedTiles.includes(currentTile)) {
-                selectedTiles.push(currentTile);
-                isValid = this.isValidStringInput(word.substring(1), currentTile.adjecents, selectedTiles);
+        while (!isValid && startingDices.length > 0) {
+            let currentDice = startingDices.shift();
+            if (!selectedDices.includes(currentDice)) {
+                selectedDices.push(currentDice);
+                isValid = this.isValidStringInput(word.substring(1), currentDice.adjecents, selectedDices);
                 if (!isValid) {
-                    selectedTiles.pop();
+                    selectedDices.pop();
                 }
             }
 
