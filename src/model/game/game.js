@@ -25,7 +25,7 @@ class Boggle {
     this.dices = DICE_CONFIG.map((dice) => new Dice(dice));
     this.answers = [];
     this.totalScore = 0;
-    this.timeLimit = 60;
+    this.timeLimit = 180;
     this.validator = new TextValidator();
     this.validator.init();
   }
