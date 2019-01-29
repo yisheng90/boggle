@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/boggle/static/js/runtime~main.cdc67b20.js"
   },
   {
-    "revision": "8e8ec75e2e9ef125ee72bf1f1b51f50a",
+    "revision": "19da594349e81cc43f6694b466bd3cb2",
     "url": "/boggle/index.html"
   }
 ];
