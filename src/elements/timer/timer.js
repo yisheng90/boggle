@@ -6,7 +6,6 @@ class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isStarted: this.props.isStarted,
       time: this.props.timeLimit,
     };
   }
@@ -28,11 +27,11 @@ class Timer extends Component {
         if (time === 0) {
           clearInterval(self.timer);
           self.props.recordTimeOut();
+        } else {
+          self.setState({
+            time: time,
+          });
         }
-        
-        self.setState({
-          time: time,
-        });
       }, 1000);
     }
   }
