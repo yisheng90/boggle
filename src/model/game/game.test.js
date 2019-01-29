@@ -33,9 +33,9 @@ test('create new game', () => {
   expect(game.dices[0].adjecents).toHaveLength(0);
 });
 
-test('_rollDices', () => {
+test('_populateBoard', () => {
   let game = new Game();
-  game._rollDices();
+  game._populateBoard();
   expect(game.dices[0].adjecents).toHaveLength(3);
   expect(game.dices[1].adjecents).toHaveLength(5);
   expect(game.dices[2].adjecents).toHaveLength(5);
@@ -53,7 +53,6 @@ test('_rollDices', () => {
   expect(game.dices[14].adjecents).toHaveLength(5);
   expect(game.dices[15].adjecents).toHaveLength(3);
 });
-
 
 test('_addWildCards', () => {
   let game = new Game();
