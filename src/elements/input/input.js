@@ -8,6 +8,7 @@ class Input extends Component {
                 <input type="text"
                        name="word"
                        className="input"
+                       autoComplete="off"
                        placeholder="Your Word"
                        onKeyDown={(e) => this.props.onChangeHandler(e)}
                 />

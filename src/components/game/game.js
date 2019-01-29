@@ -26,7 +26,7 @@ class Game extends Component {
     this._startGame()
   }
   
-  componentWillUpdate(prevProps, nexProps, snapshot) {
+  componentDidUpdate(prevProps, nexProps, snapshot) {
     if (nexProps.alphabets !== this.state.alphabets) {
       this.setState({
         hasStarted: true,
@@ -75,9 +75,9 @@ class Game extends Component {
   _renderPage() {
     if (this.state.hasTimeOut) {
       return (
-        <Summary totalScore="20"
+        <Summary totalScore={this.state.totalScore}
                  answers={this.state.answers}
-                 onClickHandler={this.restart}
+                 onClickHandler={this.startGame}
         />
       );
     } else {
