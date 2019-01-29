@@ -6,13 +6,13 @@ class Dice {
     }
     
     populateAdjacentDices(currentIdx, array = []) {
-        let target_index = [-5, -4, -3, -1, 1, 3, 4, 5];
+        let target_indexes = [-5, -4, -3, -1, 1, 3, 4, 5];
         if (currentIdx % 4 === 0) {
-            target_index = [-4, -3, 1, 4, 5];
+            target_indexes = [-4, -3, 1, 4, 5];
         } else if (currentIdx % 4 === 3) {
-            target_index = [-5, -4, -1, 3, 4];
+            target_indexes = [-5, -4, -1, 3, 4];
         }
-        this.adjecents = target_index.reduce((acc, idx) => {
+        this.adjecents = target_indexes.reduce((acc, idx) => {
             idx = currentIdx + idx;
             if ((idx >= 0 || idx <= 12) && array[idx]) {
                 acc.push(array[idx])

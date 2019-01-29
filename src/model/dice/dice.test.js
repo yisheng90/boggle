@@ -147,7 +147,6 @@ test('populateAdjacentDices  - center position - position 6', () => {
   ]));
 });
 
-
 test('populateAdjacentDices  - center position - position 9', () => {
   let dices = createDices();
   dices[9].populateAdjacentDices(9, dices);

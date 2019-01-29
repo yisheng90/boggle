@@ -31,8 +31,11 @@ class Boggle {
   }
   
   init() {
+    this.answers = [];
+    this.totalScore = 0;
     this._rollDices();
     this._addWildCards(2);
+    this._populateBoard();
   }
   
   addWord(word) {
@@ -43,15 +46,6 @@ class Boggle {
       });
       this.totalScore += this._getScore(word);
     }
-  }
-  
-  restart() {
-    this.answers = [];
-    this.totalScore = 0;
-    this.dices.forEach((dice) => {
-      dice.rollDice();
-    });
-    this._addWildCards(2);
   }
   
   _getScore(word) {
@@ -72,13 +66,16 @@ class Boggle {
   _rollDices() {
     for (let i = 0; i < this.dices.length; i++) {
       let idx = Math.floor(Math.random() * this.dices.length);
+      this.dices[i].rollDice();
+      this.dices[idx].rollDice();
       let temp = this.dices[idx];
       this.dices[idx] = this.dices[i];
       this.dices[i] = temp;
     }
-    
+  }
+  
+  _populateBoard() {
     this.dices.forEach((dice, currentIdx) => {
-      dice.rollDice();
       dice.populateAdjacentDices(currentIdx, this.dices);
     });
   }

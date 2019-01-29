@@ -18,13 +18,12 @@ class Game extends Component {
       answers: this.game.answers,
     };
     this.addWord = this._addWord.bind(this);
-    this.restart = this._restart.bind(this);
+    this.startGame = this._startGame.bind(this);
     this.recordTimeOut = this._recordTimeOut.bind(this);
   }
   
   componentDidMount() {
-    this.game.init();
-    this._setGame();
+    this._startGame()
   }
   
   componentWillUpdate(prevProps, nexProps, snapshot) {
@@ -53,13 +52,8 @@ class Game extends Component {
     });
   }
   
-  _restart(event) {
-    event.preventDefault();
-    this.game.restart();
-    this._setGame();
-  }
-  
-  _setGame() {
+  _startGame() {
+    this.game.init();
     this.setState({
       alphabets: this.game.dices.map((dice) => dice.word.toUpperCase()),
       hasStarted: false,
@@ -100,7 +94,7 @@ class Game extends Component {
             </div>
             
             <div>
-              <a href="#" className="textLink" onClick={this.restart}>Restart</a>
+              <a href="#" className="textLink" onClick={this.startGame}>Restart</a>
             </div>
           </div>
           
