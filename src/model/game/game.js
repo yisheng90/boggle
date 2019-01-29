@@ -39,6 +39,7 @@ class Boggle {
   }
   
   addWord(word) {
+    word = word.toLowerCase();
     if (this.validator.isValidStringInput(word, this.dices) && !this.validator.isWordSubmitted(word, this.answers) && this.validator.isValidWord(word)) {
       this.answers.push({
         word: word,
